@@ -82,3 +82,8 @@ Gerenciadas automaticamente pelo uv. Não editar manualmente. Consultar `uv.lock
 | pygments | requerido por rich e pytest |
 | typing-extensions | requerido por pydantic, anyio |
 | typing-inspection | requerido por pydantic |
+
+---
+
+**Autor:** Eduardo Felizardo Cândido
+**Cargo:** Senior QA Automation Engineer | AI-driven Testing | Robot

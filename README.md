@@ -137,3 +137,8 @@ omit = ["tests/*"]
 ## VS Code
 
 Abra a pasta raiz `Workspace Python/` no VS Code. Na primeira abertura, aceite a instalação das extensões recomendadas (`.vscode/extensions.json`). O interpretador Python já está apontado para `.venv/Scripts/python.exe`.
+
+---
+
+**Autor:** Eduardo Felizardo Cândido
+**Cargo:** Senior QA Automation Engineer | AI-driven Testing | Robot

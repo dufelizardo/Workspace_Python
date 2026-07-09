@@ -2,7 +2,8 @@
 
 **Versão:** 1.0
 **Data:** 2026-07-09
-**Autor:** Eduardo Felizardo
+**Autor:** Eduardo Felizardo Cândido
+**Cargo:** Senior QA Automation Engineer | AI-driven Testing | Robot
 **Repositório:** `C:\dev\Workspace Python`
 
 ---

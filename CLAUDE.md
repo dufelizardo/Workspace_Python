@@ -124,3 +124,8 @@ Nunca adicionar arquivos de projetos individuais ao git do workspace.
 - Não usar `typer` como dependência de todos os projetos — adicionar somente nos projetos que criam CLIs.
 - Não commitar `.env`, `.venv/`, `htmlcov/`, `.coverage`, `__pycache__/` — todos no `.gitignore`.
 - Não commitar o conteúdo de `projetos/` — apenas o diretório em si (`.gitkeep`).
+
+---
+
+**Autor:** Eduardo Felizardo Cândido
+**Cargo:** Senior QA Automation Engineer | AI-driven Testing | Robot
