@@ -100,6 +100,22 @@ O `pyproject.toml` de cada projeto deve conter:
 
 O `pyproject.toml` da raiz contém as configs de Ruff e BasedPyright que valem para todos os projetos. Não duplicar essas seções nos `pyproject.toml` dos projetos membros, a menos que seja uma sobrescrita intencional.
 
+## Versionamento de projetos
+
+O diretório `projetos/` é versionado (contém `.gitkeep`), mas **seu conteúdo não**.
+Cada projeto dentro de `projetos/<nome>/` é ignorado pelo `.gitignore` via padrão:
+
+```
+projetos/*
+!projetos/.gitkeep
+```
+
+Isso significa que cada projeto tem seu próprio ciclo de versionamento independente
+(repositório Git próprio, se necessário). O workspace apenas organiza e orquestra os
+projetos localmente via uv workspaces.
+
+Nunca adicionar arquivos de projetos individuais ao git do workspace.
+
 ## O que não fazer
 
 - Não criar `requirements.txt` manualmente — gerado por `uv export`.
@@ -107,3 +123,4 @@ O `pyproject.toml` da raiz contém as configs de Ruff e BasedPyright que valem p
 - Não criar ambientes virtuais separados por projeto — o `.venv` da raiz é compartilhado.
 - Não usar `typer` como dependência de todos os projetos — adicionar somente nos projetos que criam CLIs.
 - Não commitar `.env`, `.venv/`, `htmlcov/`, `.coverage`, `__pycache__/` — todos no `.gitignore`.
+- Não commitar o conteúdo de `projetos/` — apenas o diretório em si (`.gitkeep`).

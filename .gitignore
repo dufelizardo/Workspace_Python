@@ -28,3 +28,7 @@ coverage.xml
 # OS
 .DS_Store
 Thumbs.db
+
+# Projetos individuais (apenas o diretório projetos/ é versionado, não seu conteúdo)
+projetos/*
+!projetos/.gitkeep
