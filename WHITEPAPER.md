@@ -64,14 +64,15 @@ A abordagem de monorepo com uv workspaces resolve esses problemas de forma elega
 ### 3.1 Estrutura de diretórios
 
 ```
-Workspace Python/
+Workspace Python/                   ← repositório git do workspace
 │
 ├── pyproject.toml              ← workspace root virtual (sem código próprio)
-├── uv.lock                     ← lock file único e determinístico
-├── .venv/                      ← ambiente virtual compartilhado
+├── uv.lock                     ← lock file único e determinístico (commitado)
+├── .venv/                      ← ambiente virtual compartilhado (não commitado)
 │
-├── projetos/                   ← todos os projetos membros do workspace
-│   └── <nome-projeto>/
+├── projetos/                   ← diretório commitado
+│   ├── .gitkeep                ← mantém o diretório rastreado pelo git
+│   └── <nome-projeto>/         ← NÃO commitado no workspace
 │       ├── pyproject.toml      ← metadados, dependências e configs do projeto
 │       ├── src/
 │       │   └── <nome>/         ← pacote Python (src layout)
@@ -90,7 +91,7 @@ Workspace Python/
 ├── README.md
 ├── REQUIREMENTS.md
 ├── WHITEPAPER.md               ← este documento
-└── requirements.txt            ← export pip-compatível gerado por uv
+└── CLAUDE.md                   ← instruções para o Claude Code
 ```
 
 ### 3.2 Modelo de responsabilidades
@@ -290,6 +291,17 @@ Cada projeto usa **hatchling** como build backend, declarado em `[build-system]`
 
 Cada projeto declara apenas as dependências de que efetivamente precisa. Dependências compartilhadas entre projetos são resolvidas pelo uv no mesmo `.venv`, sem duplicação.
 
+### 6.4 Versionamento dos projetos
+
+O diretório `projetos/` é rastreado pelo git do workspace via `.gitkeep`, mas seu conteúdo é ignorado pelo `.gitignore`:
+
+```
+projetos/*
+!projetos/.gitkeep
+```
+
+Cada projeto dentro de `projetos/<nome>/` tem ciclo de versionamento independente — pode ter seu próprio repositório git, sem qualquer acoplamento ao repositório do workspace. O workspace apenas orquestra os projetos localmente via uv workspaces.
+
 ---
 
 ## 7. Fluxo de Trabalho
@@ -320,12 +332,20 @@ pre-commit install
 mkdir projetos\meu-projeto\src\meu_projeto
 mkdir projetos\meu-projeto\tests
 
-# 2. criar pyproject.toml (baseado no exemplo)
+# 2. criar projetos\meu-projeto\pyproject.toml
+#    (usar o template em README.md como base)
+
 # 3. sincronizar o workspace
 uv sync
 
 # 4. verificar que o projeto foi detectado
 uv run python -c "import meu_projeto"
+
+# 5. (opcional) inicializar git próprio do projeto
+cd projetos\meu-projeto
+git init
+git add .
+git commit -m "chore: initial project setup"
 ```
 
 ### 7.3 Ciclo de desenvolvimento diário
@@ -346,12 +366,17 @@ git add .
 git commit -m "feat: adicionar endpoint de autenticação"
 ```
 
-### 7.4 Atualizar requirements.txt
+### 7.4 Exportar dependências para pip
+
+O workspace não mantém um `requirements.txt` commitado, pois os projetos em `projetos/` não são commitados e suas dependências variam por instalação local.
+
+Para gerar um export pip-compatível das dependências instaladas localmente:
 
 ```bash
-# regenerar após qualquer mudança de dependências
 uv export --format requirements-txt --no-hashes > requirements.txt
 ```
+
+Este arquivo é de uso local e não deve ser commitado no workspace.
 
 ---
 

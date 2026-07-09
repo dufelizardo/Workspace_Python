@@ -32,3 +32,6 @@ Thumbs.db
 # Projetos individuais (apenas o diretório projetos/ é versionado, não seu conteúdo)
 projetos/*
 !projetos/.gitkeep
+
+# Export pip-compatível (gerado localmente, depende dos projetos instalados)
+requirements.txt

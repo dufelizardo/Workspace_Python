@@ -18,9 +18,9 @@ Instaladas uma vez na máquina. Disponíveis em qualquer terminal, fora do `.ven
 
 ---
 
-## Dependências de produção (projeto `exemplo`)
+## Dependências de produção (template padrão de projeto)
 
-Adicionadas via `uv add <pacote> --package exemplo`.
+Pacotes incluídos por padrão ao criar um novo projeto. Adicionar via `uv add <pacote> --package <nome>`.
 
 | Pacote | Versão | Papel |
 |---|---|---|
@@ -31,9 +31,9 @@ Adicionadas via `uv add <pacote> --package exemplo`.
 
 ---
 
-## Dependências de desenvolvimento (projeto `exemplo`)
+## Dependências de desenvolvimento (template padrão de projeto)
 
-Adicionadas via `uv add --dev <pacote> --package exemplo`.
+Incluídas no grupo `dev` de todo novo projeto. Adicionar via `uv add --dev <pacote> --package <nome>`.
 
 | Pacote | Versão | Papel |
 |---|---|---|
