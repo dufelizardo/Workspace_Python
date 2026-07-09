@@ -141,4 +141,5 @@ Abra a pasta raiz `Workspace Python/` no VS Code. Na primeira abertura, aceite a
 ---
 
 **Autor:** Eduardo Felizardo Cândido
+
 **Cargo:** Senior QA Automation Engineer | AI-driven Testing | Robot
